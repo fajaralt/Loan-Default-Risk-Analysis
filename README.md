@@ -1,39 +1,36 @@
 # Loan Default Risk Analysis
 
-An exploratory credit risk analysis project using Python and Pandas to identify borrower and loan characteristics associated with loan default risk.
+## Project Overview
 
-## Business Problem
+This project analyzes borrower and loan data to identify key characteristics associated with loan default risk. The analysis focuses on credit score, DTI ratio, income, loan amount, interest rate, employment status, and loan purpose.
 
-A consumer lending company wants to understand the key factors associated with loan defaults and use the findings to support credit risk assessment and underwriting decisions.
+## Business Questions
 
-## Objectives
-
-- Analyze default rates across different credit score ranges.
-- Examine the relationship between DTI ratio and loan defaults.
-- Identify loan purposes with higher default rates.
-- Compare default risk across employment segments.
-- Identify numeric variables most strongly associated with default.
-- Develop data-driven recommendations for underwriting.
+- What is the overall loan default rate?
+- How does default risk vary across different credit score ranges?
+- Is DTI ratio associated with loan default risk?
+- Which loan purposes have higher default rates?
+- How do loan amounts differ between defaulted and non-defaulted borrowers?
+- How do employment status and years employed relate to default risk?
+- Which numerical variables show the strongest relationship with default?
 
 ## Dataset
 
 The project uses two datasets:
 
-- `borrower_profiles.csv` — borrower demographics, employment, income, credit score, and existing debt.
-- `loan_applications.csv` — loan applications, loan amount, term, interest rate, DTI ratio, and repayment status.
+- `borrower_profiles.csv` — borrower demographics, employment, income, credit score, and existing debt information.
+- `loan_applications.csv` — loan amount, term, interest rate, DTI ratio, loan purpose, and repayment status.
 
-The datasets were joined using `borrower_id`, resulting in 601 loan records with borrower and loan attributes.
+The datasets were joined using `borrower_id`, resulting in 601 loan records for analysis.
 
-## Analysis Workflow
+## Workflow
 
 ### 1. Data Exploration & Preparation
 
-- Loaded and explored both datasets using Pandas.
+- Loaded and explored borrower and loan datasets using Python and Pandas.
 - Checked data types, missing values, and descriptive statistics.
-- Joined borrower and loan data using `borrower_id`.
-- Created a binary `defaulted` variable where:
-  - `1` = Default
-  - `0` = Non-default
+- Joined the datasets using `borrower_id`.
+- Created a binary `defaulted` variable to represent loan default status.
 
 ### 2. Segment Analysis
 
@@ -50,7 +47,7 @@ Default rate was calculated as:
 
 ### 3. Correlation Analysis
 
-Used point-biserial correlation to examine the relationship between default status and:
+Used point-biserial correlation to examine the relationship between default status and numerical variables:
 
 - Credit Score
 - DTI Ratio
@@ -58,73 +55,42 @@ Used point-biserial correlation to examine the relationship between default stat
 - Loan Amount
 - Interest Rate
 
-Statistical significance was evaluated using a p-value threshold of **0.05**.
+Statistical significance was evaluated using a p-value threshold of 0.05.
 
 ### 4. Visualization
 
-Created visualizations to communicate key findings, including:
+Created visualizations to communicate:
 
-- Default Rate by Credit Score Range
-- DTI Ratio vs. Default Status
-- Default Rate by Loan Purpose
+- Default rate by credit score range
+- DTI ratio and default status
+- Default rate by loan purpose
+- Differences across borrower and loan segments
 
-## Key Findings
+## Key Insights
 
-### Credit Score
+- **Credit Score:** Credit score shows the strongest relationship with default among the numerical variables analyzed (r = -0.2864, p < 0.001). Borrowers with credit scores of 520–599 have a 49.14% default rate, compared with 11.69% for borrowers with scores of 750+.
 
-Credit score showed the strongest relationship with default among the analyzed numeric variables.
+- **DTI Ratio:** Default rates increase at higher DTI levels. Borrowers with DTI above 50% have a 34.32% default rate, while the 20–35% group has a 10.61% rate. DTI is also positively associated with default (r = 0.1925, p < 0.001).
 
-Borrowers with credit scores of **520–599** had a **49.14% default rate**, compared with **11.69%** for borrowers with scores of **750+**.
+- **Interest Rate:** Interest rate shows a positive and statistically significant relationship with default (r = 0.1989, p < 0.001).
 
-The correlation between credit score and default was **-0.2864 (p < 0.05)**. :contentReference[oaicite:2]{index=2}
+- **Loan Amount:** Loan amount is not statistically significant in this analysis (r = 0.0181, p = 0.6576).
 
-### DTI Ratio
-
-Default rates increased across higher DTI ranges.
-
-| DTI Range | Default Rate |
-|---|---:|
-| <20% | 16.67% |
-| 20–35% | 10.61% |
-| 35–50% | 20.67% |
-| 50%+ | 34.32% |
-
-The analysis indicates that borrowers with higher debt burdens tend to show higher default rates. :contentReference[oaicite:3]{index=3}
-
-### Employment Status
-
-Default rates varied across employment groups, with Part-Time borrowers showing the highest rate at **27.69%**, followed by Self-Employed borrowers at **24.76%**. :contentReference[oaicite:4]{index=4}
-
-### Loan Purpose
-
-Default rates were also compared across different loan purposes to identify purposes associated with relatively higher repayment risk. :contentReference[oaicite:5]{index=5}
-
-### Correlation Results
-
-| Variable | Correlation with Default | P-Value |
-|---|---:|---:|
-| Credit Score | -0.2864 | <0.001 |
-| Interest Rate | 0.1989 | <0.001 |
-| DTI Ratio | 0.1925 | <0.001 |
-| Annual Income | -0.0815 | 0.0457 |
-| Loan Amount | 0.0181 | 0.6576 |
-
-Credit score, interest rate, DTI ratio, and annual income were statistically significant at the 5% level, while loan amount was not statistically significant in this analysis. :contentReference[oaicite:6]{index=6}
+- **Employment:** Part-time borrowers have the highest observed default rate at 27.69%, followed by self-employed borrowers at 24.76%.
 
 ## Recommendations
 
-Based on the analysis, the project proposes the following underwriting considerations:
+- **Credit Risk Assessment:** Use credit score as a key component of borrower risk assessment, with 650 as an exploratory screening threshold for additional review.
 
-1. **Credit Score ≥ 650**
-   - Flag applicants below 650 for additional risk assessment.
+- **DTI Monitoring:** Apply additional risk assessment to borrowers with high DTI, particularly those above 40–50%.
 
-2. **DTI Ratio ≤ 40%**
-   - Applicants above 40% may require additional review or stricter loan conditions.
+- **Interest Rate Monitoring:** Consider relatively high interest rates as an additional risk indicator during underwriting.
 
-3. **Interest Rate ≤ 15%**
-   - Loans requiring higher interest rates may require additional risk review.
+- **Loan Amount:** Do not use loan amount as a primary standalone rejection criterion based on this analysis.
 
-These thresholds are exploratory recommendations based on the dataset and should not be treated as production lending policies without further validation. :contentReference[oaicite:7]{index=7}
+- **Multi-Factor Assessment:** Combine credit score, DTI, interest rate, and borrower characteristics rather than relying on a single risk factor.
+
+> **Note:** These findings are exploratory and based on the available dataset. The proposed thresholds should be validated on larger and more representative data before being used as production underwriting policies.
 
 ## Tools
 
@@ -134,9 +100,8 @@ These thresholds are exploratory recommendations based on the dataset and should
 - Matplotlib
 - Seaborn
 - SciPy
-- Jupyter Notebook
 - Power BI
 
-## Project Workflow
+## Project Outcome
 
-**Data Exploration → Data Preparation → Dataset Join → Segment Analysis → Correlation Analysis → Visualization → Risk Insights → Recommendations**
+The analysis identifies borrower and loan characteristics associated with default risk and translates the findings into data-driven recommendations that can support credit risk assessment and underwriting decisions.
