@@ -1,0 +1,8 @@
+dti_threshold,total_loans_above_cutoff,defaults_above_cutoff,default_rate_above_cutoff,loan_pct_above_cutoff,default_capture_rate
+40,364,115,31.59,60.57,78.77
+45,330,105,31.82,54.91,71.92
+50,270,93,34.44,44.93,63.70
+55,219,81,36.99,36.44,55.48
+60,171,61,35.67,28.45,41.78
+65,128,46,35.94,21.30,31.51
+70,95,36,37.89,15.81,24.66

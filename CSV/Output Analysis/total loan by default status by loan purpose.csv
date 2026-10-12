@@ -1,0 +1,21 @@
+loan_purpose,default_status,total_loans,avg_loan_amount,avg_term_months,avg_interest_rate,avg_monthly_payment,avg_dti
+"Auto Loan",Defaulted,16,22643.75,40.50,11.05,940.66,51.07
+"Auto Loan",Non-Defaulted,43,18404.65,36.00,10.48,796.86,41.90
+"Business Loan",Defaulted,14,16407.14,33.43,11.40,840.31,59.01
+"Business Loan",Non-Defaulted,44,22479.55,38.18,10.56,844.34,38.90
+"Debt Consolidation",Defaulted,11,29036.36,31.64,9.76,1710.35,68.22
+"Debt Consolidation",Non-Defaulted,40,21030.00,33.90,10.17,930.74,45.99
+Education,Defaulted,12,29183.33,34.00,12.30,1436.28,55.13
+Education,Non-Defaulted,41,17114.63,38.34,11.20,667.91,43.47
+"Home Improvement",Defaulted,20,19150.00,40.20,11.65,737.33,54.63
+"Home Improvement",Non-Defaulted,50,25110.00,38.64,10.34,1011.72,49.81
+"Major Purchase",Defaulted,15,16180.00,30.40,12.00,833.53,57.06
+"Major Purchase",Non-Defaulted,53,25141.51,34.87,10.36,1210.09,53.58
+"Medical Expenses",Defaulted,14,30421.43,33.43,11.84,1418.89,71.21
+"Medical Expenses",Non-Defaulted,54,21298.15,37.33,10.42,909.20,48.69
+Moving,Defaulted,12,21975.00,34.00,10.51,982.93,54.19
+Moving,Non-Defaulted,44,21115.91,39.27,9.99,727.82,44.43
+Vacation,Defaulted,14,24307.14,45.43,12.15,710.12,51.35
+Vacation,Non-Defaulted,48,24527.08,37.00,10.09,1014.46,52.21
+Wedding,Defaulted,18,21005.56,30.00,11.26,1140.17,59.93
+Wedding,Non-Defaulted,38,22313.16,34.74,10.33,977.55,48.80

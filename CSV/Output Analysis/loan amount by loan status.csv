@@ -1,0 +1,5 @@
+loan_status,total_loans,loan_share_pct,total_loan_amount,avg_loan_amount
+Current,239,39.77,5089300.00,21294.14
+Default,146,24.29,3295300.00,22570.55
+Late,103,17.14,2510500.00,24373.79
+"Paid Off",113,18.80,2416000.00,21380.53

@@ -1,0 +1,6 @@
+credit_score_bucket,total_loans,defaulted_loans,defaulted_rate
+520-599,116,57,49.14
+600-649,93,27,29.03
+650-699,75,21,28.00
+700-749,86,14,16.28
+750+,231,27,11.69

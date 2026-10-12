@@ -1,0 +1,6 @@
+years_employed_bands,total_loans,defaulted_loans,default_rate
+"<2 years",84,29,34.52
+"2-5 years",146,24,16.44
+"6-10 years",110,33,30.00
+"11-20 years",161,34,21.12
+"21+ years",100,26,26.00

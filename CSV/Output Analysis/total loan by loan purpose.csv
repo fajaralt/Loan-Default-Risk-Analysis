@@ -1,0 +1,11 @@
+loan_purpose,total_loans,avg_loan_amount,avg_interest_rate,avg_monthly_payment
+"Home Improvement",70,23407.14,10.71,933.32
+"Major Purchase",68,23164.71,10.72,1127.02
+"Medical Expenses",68,23176.47,10.72,1014.13
+Vacation,62,24477.42,10.56,945.74
+"Auto Loan",59,19554.24,10.63,835.86
+"Business Loan",58,21013.79,10.76,843.37
+Moving,56,21300.00,10.10,782.49
+Wedding,56,21892.86,10.63,1029.82
+Education,53,19847.17,11.45,841.88
+"Debt Consolidation",51,22756.86,10.08,1098.89

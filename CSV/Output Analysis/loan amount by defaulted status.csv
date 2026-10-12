@@ -1,0 +1,3 @@
+defaulted_status,total_loans,average_loan_amount,minimum_loan_amount,maximum_loan_amount
+Non-Defaulted,455,22012.75,2000.00,49800.00
+Defaulted,146,22570.55,2400.00,49700.00
