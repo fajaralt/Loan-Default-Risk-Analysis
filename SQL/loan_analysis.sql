@@ -51,12 +51,6 @@ IGNORE 1 LINES;
 SET GLOBAL local_infile = 0;
 SHOW VARIABLES LIKE 'local_infile';
 
-ALTER TABLE loan_applications
-MODIFY COLUMN interest_rate DECIMAL(4, 2) NOT NULL DEFAULT 0.00,
-MODIFY COLUMN dti_ratio DECIMAL(5, 2) NOT NULL DEFAULT 0.00,
-MODIFY COLUMN loan_status VARCHAR(50) NOT NULL,
-MODIFY COLUMN days_delinquent SMALLINT UNSIGNED NOT NULL DEFAULT 0;
-
 -- Cleaning Data and Checking the Datas -- 
 
 -- 1. Create Staging Table
@@ -97,6 +91,31 @@ WHERE row_num > 1;
 
 ## No duplicate Data in borrower_profiles table
 
+## Checking data types
+
+DESCRIBE loan_applications;
+
+DESCRIBE borrower_profiles;
+
+## Lock all the datasets
+
+ALTER TABLE loan_applications
+MODIFY COLUMN interest_rate DECIMAL(4, 2) NOT NULL DEFAULT 0.00,
+MODIFY COLUMN dti_ratio DECIMAL(5, 2) NOT NULL DEFAULT 0.00,
+MODIFY COLUMN loan_status VARCHAR(50) NOT NULL,
+MODIFY COLUMN days_delinquent SMALLINT UNSIGNED NOT NULL DEFAULT 0;
+
+ALTER TABLE borrower_profiles
+MODIFY COLUMN age INT NOT NULL,
+MODIFY COLUMN state VARCHAR(5) NOT NULL,
+MODIFY COLUMN education_level VARCHAR(50) NOT NULL,
+MODIFY COLUMN employment_status VARCHAR(50) NOT NULL,
+MODIFY COLUMN years_employed INT NOT NULL,
+MODIFY COLUMN credit_score SMALLINT UNSIGNED NOT NULL,
+MODIFY COLUMN home_ownership VARCHAR(20) NOT NULL,
+MODIFY COLUMN dependents INT NOT NULL,
+MODIFY COLUMN existing_monthly_debt DECIMAL(10, 2) NOT NULL;
+
 -- All the Datasets already cleaned and ready to analyze
 
 # Question to answer and breakdown what types of analytics 
@@ -112,18 +131,6 @@ WHERE row_num > 1;
 # -- Diagnostic Analytics -- 
 # 1. What factors may explain higher default rates among certain loan purposes?
 # 2. What factors may explain higher default rates among borrowers with shorter employment tenure?
-
-# -- Statistical Analytics -- 
-# 1. Does average loan amount differ significantly between defaulted and non-defaulted loans?
-# 2. Is the default rate among borrowers with less than two years of employment significantly higher?
-# 3. Is the relationship between DTI and default statistically significant?
-# 4. Are the differences in default rates across loan purposes statistically significant?
-
-# -- Hypothesis Testing -- 
-# 1. Are borrowers with less than 2 years of employment significantly more likely to default?
-# Hypothesis: 
-# H0: Borrowers with less than 2 years of employment are not significantly more likely to default.
-# H1: Borrowers with less than 2 years of employment are significantly more likely to default.
 
 # -- Prescriptive Analytics -- 
 # 1. What DTI threshold would you recommend as a cutoff for loan approval?
@@ -497,8 +504,8 @@ GROUP BY employment_group;
 -- suggesting that greater debt burden may be one factor associated with the higher default rate. 
 -- However, credit score and income do not show patterns that clearly explain the difference.
 
-
-
+# -- Prescriptive Analytics -- 
+# 1. What DTI threshold would you recommend as a cutoff for loan approval?
 
 WITH thresholds AS (
     SELECT 40 AS dti_threshold
@@ -532,49 +539,6 @@ ORDER BY t.dti_threshold;
 -- and should be combined with other borrower characteristics such as credit score and existing debt.
 
 
-DESCRIBE loan_applications;
-DESCRIBE borrower_profiles;
-SELECT 
-	MIN(credit_score) AS min_credit_score,
-    MAX(credit_score) AS max_credit_score,
-    AVG(credit_score) AS avg_credit_score
-FROM loan_applications l
-JOIN borrower_profiles b 
-	ON l.borrower_id = b.borrower_id;
-
-SELECT * 
-FROM loan_applications
-WHERE loan_status IS NULL;
-
-
-SELECT
-    l.loan_id,
-    b.borrower_id,
-    b.annual_income,
-    b.existing_monthly_debt,
-    l.monthly_payment,
-    ROUND(
-        (b.existing_monthly_debt + l.monthly_payment)
-        / (b.annual_income / 12) * 100,
-        1
-    ) AS calculated_dti
-FROM loan_applications l
-JOIN borrower_profiles b
-    ON b.borrower_id = l.borrower_id;
-
-SELECT *
-FROM loan_applications;
-
-SELECT *
-FROM borrower_profiles;
-
-SELECT
-	COUNT(*)
-FROM loan_applications;
-
-SELECT
-	COUNT(*)
-FROM borrower_profiles;
 
 
 
